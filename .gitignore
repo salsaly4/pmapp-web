@@ -1,3 +1,7 @@
+# Project specific ignores
+*.css
+*.css.map
+
 # Logs
 logs
 *.log
