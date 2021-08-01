@@ -1,5 +1,6 @@
+import React from "react";
+import Home from "./components/pages/Home/Home";
 import "./app.css";
-import pm from "./pm.jpg";
 
 function App() {
   return (
@@ -17,14 +18,7 @@ function App() {
             </a>
           </div>
         </div>
-        <div className="main">
-          <div className="descphoto">
-            <img src={pm} width="400" height="500" />
-          </div>
-          <div className="desctext">
-            <p>Description text. Lorem ipsum.</p>
-          </div>
-        </div>
+        <Home />
         <hr className="footer_divider" />
         <div className="footer">
           <div className="copyright">&copy; 2021 Flexoprom LLC</div>
