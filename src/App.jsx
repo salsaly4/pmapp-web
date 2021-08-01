@@ -1,28 +1,16 @@
 import React from "react";
-import Home from "./components/pages/Home/Home";
+import Home from "./components/pages/Home/Home.jsx";
 import "./app.css";
+import Navbar from "./components/Navbar/Navbar.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 function App() {
   return (
     <div className="App">
       <div className="container">
-        <div className="navbar">
-          <div className="navbar__logo">FPM</div>
-          <div className="navbar__menu">
-            <a className="navbar__menuitem" href="#login">
-              Login
-            </a>
-            <div className="navbar__menusep">|</div>
-            <a className="navbar__menuitem" href="#register">
-              Register
-            </a>
-          </div>
-        </div>
+        <Navbar />
         <Home />
-        <hr className="footer_divider" />
-        <div className="footer">
-          <div className="copyright">&copy; 2021 Flexoprom LLC</div>
-        </div>
+        <Footer />
       </div>
     </div>
   );
