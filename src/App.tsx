@@ -1,4 +1,5 @@
 import React from 'react';
+import { TaskBoard } from './components/TaskBoard';
 
 function App(): React.ReactElement {
   return (
@@ -6,6 +7,7 @@ function App(): React.ReactElement {
       <header className="App-header">
         <p>Flexoprom Project Management Suite</p>
       </header>
+      <TaskBoard />
     </div>
   );
 }
