@@ -1,15 +1,13 @@
 import React from 'react';
 
-function App() {
+function App(): React.ReactElement {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Flexoprom Project Management Suite
-        </p>
+        <p>Flexoprom Project Management Suite</p>
       </header>
     </div>
   );
 }
 
-export default App;
+export { App };
