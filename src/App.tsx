@@ -1,13 +1,17 @@
 import React from 'react';
-import { TaskBoard } from './components/TaskBoard';
+import styles from './App.module.css';
+import { NavBar } from './components/NavBar';
+import { Footer } from './components/Footer';
+import { Home } from './pages/Home';
 
 function App(): React.ReactElement {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <header className="App-header">
-        <p>Flexoprom Project Management Suite</p>
+        <NavBar />
       </header>
-      <TaskBoard />
+      <Home />
+      <Footer />
     </div>
   );
 }
