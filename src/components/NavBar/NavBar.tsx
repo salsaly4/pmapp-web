@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./Navbar.module.css";
+import React, { FC } from 'react';
+import styles from './NavBar.module.css';
 
-const Navbar = () => (
+const NavBar: FC = () => (
   <div className={styles.navbar}>
     <div className={styles.navbar__content}>
       <div className={styles.navbar__logo}>FPM</div>
@@ -18,4 +18,4 @@ const Navbar = () => (
   </div>
 );
 
-export default Navbar;
+export { NavBar };

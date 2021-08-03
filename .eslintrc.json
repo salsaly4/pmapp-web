@@ -1,21 +1,79 @@
 {
-  "extends": ["airbnb-base", "prettier", "plugin:react/recommended"],
-  "plugins": ["prettier", "react"],
-  "rules": {
-    "prettier/prettier": ["error"],
-    "no-alert": ["off"],
-    "jsx-a11y/no-static-element-interactions": ["off"]
+  "plugins": [
+    "@typescript-eslint",
+    "eslint-comments"
+  ],
+  "extends": [
+    "airbnb-typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:eslint-comments/recommended",
+    "prettier"
+  ],
+  "env": {
+    "node": true,
+    "browser": true,
+    "jest": true,
+    "es2021": true
   },
-  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "requireConfigFile": false,
-    "babelOptions": {
-      "presets": ["@babel/preset-react"]
-    }
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2021
   },
-  "globals": {
-    "alert": true,
-    "localStorage": true,
-    "document": true
-  }
+  "rules": {
+    // Too restrictive, writing ugly code to defend against a very unlikely scenario: https://eslint.org/docs/rules/no-prototype-builtins
+    "no-prototype-builtins": "off",
+    // https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error",
+    // Too restrictive: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
+    "react/destructuring-assignment": "off",
+    // No jsx extension: https://github.com/facebook/create-react-app/issues/87#issuecomment-234627904
+    "react/jsx-filename-extension": "off",
+    // Use function hoisting to improve code readability
+    //    "no-use-before-define": [
+    //      "error",
+    //      {
+    //        "functions": false,
+    //        "classes": true,
+    //        "variables": true
+    //      }
+    //    ],
+    // Allow most functions to rely on type inference. If the function is exported, then `@typescript-eslint/explicit-module-boundary-types` will ensure it's typed.
+    "@typescript-eslint/explicit-function-return-type": "off",
+    //    "@typescript-eslint/no-use-before-define": [
+    //      "error",
+    //      {
+    //        "functions": false,
+    //        "classes": true,
+    //        "variables": true,
+    //        "typedefs": true
+    //      }
+    //    ],
+    // Common abbreviations are known and readable
+    "unicorn/prevent-abbreviations": "off",
+    // Airbnb prefers forEach
+    "unicorn/no-array-for-each": "off",
+    // It's not accurate in the monorepo style
+    "import/no-extraneous-dependencies": "off",
+    // note you must disable the base rule as it can report incorrect errors
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    // Remove React propTypes checking — it's excessive
+    "react/prop-types": "off",
+    // Disable required key events for non-interactive elements
+    "jsx-a11y/click-events-have-key-events": "off"
+  },
+
+  "overrides": [
+    {
+      "files": [
+        "*.js"
+      ],
+      "rules": {
+        // Allow `require()`
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
 }

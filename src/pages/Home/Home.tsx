@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./Home.module.css";
-import pm from "./pm.jpg";
+import React, { FC } from 'react';
+import styles from './Home.module.css';
+import pm from './pm.jpg';
 
-const Home = () => (
+const Home: FC = () => (
   <div className={styles.main}>
     <div className={styles.main__content}>
       <div className={styles.descphoto}>
@@ -15,4 +15,4 @@ const Home = () => (
   </div>
 );
 
-export default Home;
+export { Home };

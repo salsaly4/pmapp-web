@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./Footer.module.css";
+import React, { FC } from 'react';
+import styles from './Footer.module.css';
 
-const Footer = () => (
+const Footer: FC = () => (
   <div className={styles.footer}>
     <hr className={styles.footerDivider} />
     <div className={styles.footerContent}>
@@ -10,4 +10,4 @@ const Footer = () => (
   </div>
 );
 
-export default Footer;
+export { Footer };
