@@ -2,12 +2,21 @@
  * Copyright (c) Alexander Bulanov 2021.
  */
 
+/*
+ * ALPHA: Boilerplate code
+ * Represents external app connection
+ */
 interface IConnectedApp {
   id: string;
   title: string;
   token: string;
 }
 
+/*
+ * BETA: subject for implementation
+ * Represents User state
+ *
+ */
 export interface IUserState {
   id: string;
   email: string;
@@ -25,10 +34,17 @@ export interface IUserState {
   connectedApps: IConnectedApp[];
 }
 
+/*
+ * BETA: for use in role management
+ */
 export interface IUser {
   id: string;
+  role: UserRoles;
 }
 
+/*
+ * Describes user roles for internal authorization
+ */
 export enum UserRoles {
   owner = 0,
   admin = 10,
@@ -37,6 +53,9 @@ export enum UserRoles {
   viewer = 40,
 }
 
+/*
+ * User action types
+ */
 export enum UserActionTypes {
   SET_USER_ID = 'SET_USER_ID',
   SET_USER_NAME = 'SET_USER_NAME',
