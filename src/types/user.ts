@@ -2,10 +2,27 @@
  * Copyright (c) Alexander Bulanov 2021.
  */
 
+interface IConnectedApp {
+  id: string;
+  title: string;
+  token: string;
+}
+
 export interface IUserState {
   id: string;
-  firstName: string;
-  lastName: string;
+  email: string;
+  fullName: {
+    firstName: string;
+    lastName: string;
+  };
+  avatar: string;
+  supportAccess: boolean;
+  notifications: {
+    mobileNotifications: boolean;
+    desktopNotifications: boolean;
+    emailNotifications: boolean;
+  };
+  connectedApps: IConnectedApp[];
 }
 
 export enum UserActionTypes {

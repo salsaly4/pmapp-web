@@ -6,8 +6,19 @@ import { IUserState, UserAction, UserActionTypes } from '../../types/user';
 
 const initialState: IUserState = {
   id: '',
-  firstName: '',
-  lastName: '',
+  email: '',
+  fullName: {
+    firstName: '',
+    lastName: '',
+  },
+  avatar: '',
+  supportAccess: false,
+  notifications: {
+    mobileNotifications: true,
+    desktopNotifications: true,
+    emailNotifications: false,
+  },
+  connectedApps: [],
 };
 
 export const userReducer = (state = initialState, action: UserAction): IUserState => {
@@ -15,7 +26,10 @@ export const userReducer = (state = initialState, action: UserAction): IUserStat
     case UserActionTypes.SET_USER_ID:
       return { ...state, id: action.payload };
     case UserActionTypes.SET_USER_NAME:
-      return { ...state, firstName: action.payload.firstName, lastName: action.payload.lastName };
+      return {
+        ...state,
+        fullName: { firstName: action.payload.firstName, lastName: action.payload.lastName },
+      };
     default:
       return state;
   }
