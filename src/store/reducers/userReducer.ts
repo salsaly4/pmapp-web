@@ -5,13 +5,13 @@
 import { IUserState, UserAction, UserActionTypes } from '../../types/user';
 
 const initialState: IUserState = {
-  id: '',
-  email: '',
+  id: '1',
+  email: 'me@abulanov.com',
   fullName: {
-    firstName: '',
-    lastName: '',
+    firstName: 'Alexander',
+    lastName: 'Bulanov',
   },
-  avatar: '',
+  avatar: 'ab.jpg',
   supportAccess: false,
   notifications: {
     mobileNotifications: true,
