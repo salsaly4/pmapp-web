@@ -1,4 +1,9 @@
+/*
+ * Copyright (c) Alexander Bulanov 2021.
+ */
+
 import React, { FC } from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from './NavBar.module.css';
 
 const NavBar: FC = () => (
@@ -6,13 +11,13 @@ const NavBar: FC = () => (
     <div className={styles.navbar__content}>
       <div className={styles.navbar__logo}>FPM</div>
       <div className={styles.navbar__menu}>
-        <a className={styles.navbar__menuitem} href="#login">
+        <NavLink className={styles.navbar__menuitem} to="/main">
           Login
-        </a>
+        </NavLink>
         <div className={styles.navbar__menusep}>|</div>
-        <a className={styles.navbar__menuitem} href="#register">
+        <NavLink className={styles.navbar__menuitem} to="/">
           Register
-        </a>
+        </NavLink>
       </div>
     </div>
   </div>
