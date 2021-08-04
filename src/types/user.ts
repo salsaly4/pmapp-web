@@ -29,6 +29,14 @@ export interface IUser {
   id: string;
 }
 
+export enum UserRoles {
+  owner = 0,
+  admin = 10,
+  manager = 20,
+  editor = 30,
+  viewer = 40,
+}
+
 export enum UserActionTypes {
   SET_USER_ID = 'SET_USER_ID',
   SET_USER_NAME = 'SET_USER_NAME',
