@@ -25,6 +25,9 @@ const muitheme = createTheme({
     h6: {
       fontFamily: ['Jost', 'sans-serif'].join(','),
     },
+    allVariants: {
+      color: 'lightgray',
+    },
   },
 });
 
