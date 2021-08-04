@@ -4,6 +4,7 @@
 
 import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 import styles from './NavBar.module.css';
 
 const NavBar: FC = () => (
@@ -11,13 +12,12 @@ const NavBar: FC = () => (
     <div className={styles.navbar__content}>
       <div className={styles.navbar__logo}>FPM</div>
       <div className={styles.navbar__menu}>
-        <NavLink className={styles.navbar__menuitem} to="/main">
+        <Button color="secondary" size="small" component={NavLink} to="/main">
           Login
-        </NavLink>
-        <div className={styles.navbar__menusep}>|</div>
-        <NavLink className={styles.navbar__menuitem} to="/">
+        </Button>
+        <Button variant="outlined" color="primary" size="small" component={NavLink} to="/">
           Register
-        </NavLink>
+        </Button>
       </div>
     </div>
   </div>
