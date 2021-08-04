@@ -25,6 +25,10 @@ export interface IUserState {
   connectedApps: IConnectedApp[];
 }
 
+export interface IUser {
+  id: string;
+}
+
 export enum UserActionTypes {
   SET_USER_ID = 'SET_USER_ID',
   SET_USER_NAME = 'SET_USER_NAME',
