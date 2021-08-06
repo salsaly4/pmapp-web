@@ -4,34 +4,50 @@
 
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { muitheme } from './utils/muitheme';
-import styles from './App.module.css';
+import { CssBaseline, useMediaQuery } from '@material-ui/core';
+import { ThemeProvider, StyledEngineProvider, createTheme } from '@material-ui/core/styles';
+import { ThemeTypography } from './utils/muitheme';
 import { NavBar } from './components/NavBar';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
 import { Main } from './pages/Main';
 
 function App(): React.ReactElement {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? 'dark' : 'light',
+        },
+        typography: ThemeTypography,
+      }),
+    [prefersDarkMode],
+  );
+
   return (
-    <ThemeProvider theme={muitheme}>
-      <BrowserRouter>
-        <div className={styles.App}>
-          <header className="App-header">
-            <NavBar />
-          </header>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/main">
-              <Main />
-            </Route>
-          </Switch>
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <BrowserRouter>
+          <div>
+            <header className="App-header">
+              <NavBar />
+            </header>
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/main">
+                <Main />
+              </Route>
+            </Switch>
+            <Footer />
+          </div>
+        </BrowserRouter>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 }
 

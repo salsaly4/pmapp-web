@@ -3,19 +3,21 @@
  */
 
 import { Dispatch } from 'redux';
+import axios from 'axios';
 import { IUserState, UserAction, UserActionTypes } from '../../types/user';
 
 export const loadUser =
   () =>
-  (dispatch: Dispatch<UserAction>): void => {
+  async (dispatch: Dispatch<UserAction>): Promise<void> => {
     try {
       dispatch({ type: UserActionTypes.FETCH_USER });
-      const response = localStorage.getItem('fpms_user');
-      if (response) {
-        dispatch({
-          type: UserActionTypes.FETCH_USER_SUCCESS,
-          payload: <IUserState>JSON.parse(response),
-        });
+      const response = await axios.get('http://localhost:3004/users');
+      if (response.data) {
+        console.log(response.data);
+        // dispatch({
+        //   type: UserActionTypes.FETCH_USER_SUCCESS,
+        //   payload: <IUserState>JSON.parse(response.data),
+        // });
       }
     } catch (e) {
       dispatch({ type: UserActionTypes.FETCH_USER_ERROR, payload: 'Error loading user.' });
