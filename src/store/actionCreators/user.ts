@@ -11,13 +11,12 @@ export const loadUser =
   async (dispatch: Dispatch<UserAction>): Promise<void> => {
     try {
       dispatch({ type: UserActionTypes.FETCH_USER });
-      const response = await axios.get('http://localhost:3004/users');
+      const response = await axios.get<IUserState>('http://localhost:3004/user');
       if (response.data) {
-        console.log(response.data);
-        // dispatch({
-        //   type: UserActionTypes.FETCH_USER_SUCCESS,
-        //   payload: <IUserState>JSON.parse(response.data),
-        // });
+        dispatch({
+          type: UserActionTypes.FETCH_USER_SUCCESS,
+          payload: response.data,
+        });
       }
     } catch (e) {
       dispatch({ type: UserActionTypes.FETCH_USER_ERROR, payload: 'Error loading user.' });
@@ -34,4 +33,10 @@ export const saveUser =
     } catch (e) {
       dispatch({ type: UserActionTypes.SAVE_USER_ERROR, payload: 'Error saving user.' });
     }
+  };
+
+export const authUser =
+  () =>
+  (dispatch: Dispatch<UserAction>): void => {
+    dispatch({ type: UserActionTypes.AUTH_USER, payload: true });
   };

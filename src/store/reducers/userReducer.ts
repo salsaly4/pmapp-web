@@ -5,17 +5,17 @@
 import { IUserState, UserAction, UserActionTypes } from '../../types/user';
 
 const initialState: IUserState = {
-  id: '1',
-  email: 'me@abulanov.com',
+  id: '0',
+  email: '',
   fullName: {
-    firstName: 'Alexander',
-    lastName: 'Bulanov',
+    firstName: '',
+    lastName: '',
   },
-  avatar: 'ab.jpg',
+  avatar: '',
   supportAccess: false,
   notifications: {
-    mobileNotifications: true,
-    desktopNotifications: true,
+    mobileNotifications: false,
+    desktopNotifications: false,
     emailNotifications: false,
   },
   connectedApps: [],
@@ -27,6 +27,11 @@ const initialState: IUserState = {
 
 export const userReducer = (state = initialState, action: UserAction): IUserState => {
   switch (action.type) {
+    case UserActionTypes.AUTH_USER:
+      return {
+        ...state,
+        isAuth: action.payload,
+      };
     case UserActionTypes.FETCH_USER:
       return {
         ...state,
