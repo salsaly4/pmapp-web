@@ -19,6 +19,7 @@ const initialState: IUserState = {
     emailNotifications: false,
   },
   connectedApps: [],
+  isAuth: false,
   loading: false,
   saved: false,
   error: false,

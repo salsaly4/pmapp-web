@@ -45,6 +45,7 @@ export interface IUserState {
   /*
    * Internal properties
    */
+  isAuth: boolean;
   loading: boolean;
   saved: boolean;
   error: boolean;
