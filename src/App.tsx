@@ -11,6 +11,7 @@ import { NavBar } from './components/NavBar';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
 import { Main } from './pages/Main';
+import './App.module.css';
 
 function App(): React.ReactElement {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
