@@ -3,6 +3,7 @@
  */
 
 import React, { FC, useState } from 'react';
+import { useHistory, Link as RouterLink } from 'react-router-dom';
 import {
   AppBar,
   Button,
@@ -13,6 +14,7 @@ import {
   Typography,
   Menu,
   MenuItem,
+  Link,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { AccountCircle } from '@material-ui/icons';
@@ -23,13 +25,19 @@ const NavBar: FC = () => {
   const { user } = useTypedSelector((state) => state);
   const { authUser, fetchUser, logoutUser } = useActions();
   const [anchorEl, setAnchorEl] = useState<(EventTarget & HTMLButtonElement) | null>(null);
+  const history = useHistory();
 
   const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleMenuClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleProfile = () => {
+    setAnchorEl(null);
+    history.push('/userprefs');
   };
 
   const handleLogout = () => {
@@ -51,9 +59,13 @@ const NavBar: FC = () => {
               <MenuIcon />
             </IconButton>
           )}
+
           <Typography variant="h5" color="primary" sx={{ flexGrow: 1 }}>
-            FPMS
+            <Link component={RouterLink} to="/" underline="none">
+              FPMS
+            </Link>
           </Typography>
+
           {user.isAuth ? (
             <>
               <div>
@@ -74,9 +86,9 @@ const NavBar: FC = () => {
                   horizontal: 'right',
                 }}
                 open={Boolean(anchorEl)}
-                onClose={handleClose}
+                onClose={handleMenuClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleProfile}>Profile</MenuItem>
                 <Divider />
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>

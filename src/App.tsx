@@ -13,6 +13,7 @@ import { Home } from './pages/Home';
 import { Main } from './pages/Main';
 import './App.module.css';
 import { useActions } from './hooks/useActions';
+import { UserPreferences } from './pages/UserPreferences';
 
 function App(): React.ReactElement {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -49,6 +50,9 @@ function App(): React.ReactElement {
               </Route>
               <Route path="/main">
                 <Main />
+              </Route>
+              <Route path="/userprefs">
+                <UserPreferences />
               </Route>
             </Switch>
             <Footer />
