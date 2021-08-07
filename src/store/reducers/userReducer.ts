@@ -108,6 +108,8 @@ export const userReducer = (state = initialState, action: UserAction): IUserStat
         connectedApps: state.connectedApps.filter((app) => app.id !== action.payload),
         saved: false,
       };
+    case UserActionTypes.LOGOUT_USER:
+      return initialState;
     default:
       return state;
   }

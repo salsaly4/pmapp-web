@@ -64,3 +64,10 @@ export const authUser =
   (dispatch: Dispatch<UserAction>): void => {
     dispatch({ type: UserActionTypes.AUTH_USER, payload: true });
   };
+
+export const logoutUser =
+  () =>
+  (dispatch: Dispatch<UserAction>): void => {
+    localStorage.removeItem('fpms_user');
+    dispatch({ type: UserActionTypes.LOGOUT_USER });
+  };

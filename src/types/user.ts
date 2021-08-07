@@ -87,6 +87,7 @@ export enum UserActionTypes {
   SET_NOTIFICATIONS = 'SET_NOTIFICATIONS',
   CONNECT_APP = 'CONNECT_APP',
   DISCONNECT_APP = 'DISCONNECT_APP',
+  LOGOUT_USER = 'LOGOUT_USER',
 }
 
 interface AuthUser {
@@ -151,6 +152,10 @@ interface DisconnectApp {
   payload: string;
 }
 
+interface LogoutUser {
+  type: UserActionTypes.LOGOUT_USER;
+}
+
 export type UserAction =
   | AuthUser
   | FetchUser
@@ -164,4 +169,5 @@ export type UserAction =
   | GrantSupportAccess
   | SetNotifications
   | ConnectApp
-  | DisconnectApp;
+  | DisconnectApp
+  | LogoutUser;
