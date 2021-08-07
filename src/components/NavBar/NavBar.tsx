@@ -43,11 +43,13 @@ const NavBar: FC = () => {
   const handleLogout = () => {
     setAnchorEl(null);
     logoutUser();
+    history.push('/');
   };
 
   const handleLogin = async () => {
     await fetchUser();
     authUser();
+    history.push('/main');
   };
 
   return (
@@ -83,7 +85,7 @@ const NavBar: FC = () => {
                 keepMounted
                 transformOrigin={{
                   vertical: 'top',
-                  horizontal: 'right',
+                  horizontal: 'center',
                 }}
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
