@@ -2,7 +2,7 @@
  * Copyright (c) Alexander Bulanov 2021.
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { CssBaseline, useMediaQuery } from '@material-ui/core';
 import { ThemeProvider, StyledEngineProvider, createTheme } from '@material-ui/core/styles';
@@ -12,6 +12,7 @@ import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
 import { Main } from './pages/Main';
 import './App.module.css';
+import { useActions } from './hooks/useActions';
 
 function App(): React.ReactElement {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -26,6 +27,12 @@ function App(): React.ReactElement {
       }),
     [prefersDarkMode],
   );
+
+  const { loadUser } = useActions();
+
+  useEffect(() => {
+    loadUser();
+  }, []);
 
   return (
     <StyledEngineProvider injectFirst>

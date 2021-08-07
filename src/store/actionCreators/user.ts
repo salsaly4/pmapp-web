@@ -6,7 +6,19 @@ import { Dispatch } from 'redux';
 import axios from 'axios';
 import { IUserState, UserAction, UserActionTypes } from '../../types/user';
 
-export const loadUser =
+export const saveUser =
+  (user: IUserState) =>
+  (dispatch: Dispatch<UserAction>): void => {
+    try {
+      dispatch({ type: UserActionTypes.SAVE_USER });
+      localStorage.setItem('fpms_user', JSON.stringify(user));
+      dispatch({ type: UserActionTypes.SAVE_USER_SUCCESS });
+    } catch (e) {
+      dispatch({ type: UserActionTypes.SAVE_USER_ERROR, payload: 'Error saving user.' });
+    }
+  };
+
+export const fetchUser =
   () =>
   async (dispatch: Dispatch<UserAction>): Promise<void> => {
     try {
@@ -17,21 +29,33 @@ export const loadUser =
           type: UserActionTypes.FETCH_USER_SUCCESS,
           payload: response.data,
         });
+        localStorage.setItem('fpms_user', JSON.stringify(response.data));
       }
     } catch (e) {
       dispatch({ type: UserActionTypes.FETCH_USER_ERROR, payload: 'Error loading user.' });
     }
   };
 
-export const saveUser =
-  (user: IUserState) =>
+export const loadUser =
+  () =>
   (dispatch: Dispatch<UserAction>): void => {
     try {
-      dispatch({ type: UserActionTypes.SAVE_USER });
-      localStorage.setItem('fpms_user', JSON.stringify(user));
-      dispatch({ type: UserActionTypes.SAVE_USER_SUCCESS });
+      dispatch({ type: UserActionTypes.FETCH_USER });
+      const json = localStorage.getItem('fpms_user');
+      if (json) {
+        const user: IUserState = <IUserState>JSON.parse(json);
+        dispatch({
+          type: UserActionTypes.FETCH_USER_SUCCESS,
+          payload: { ...user, isAuth: true },
+        });
+      } else {
+        dispatch({
+          type: UserActionTypes.FETCH_USER_ERROR,
+          payload: 'Error loading user profile.',
+        });
+      }
     } catch (e) {
-      dispatch({ type: UserActionTypes.SAVE_USER_ERROR, payload: 'Error saving user.' });
+      dispatch({ type: UserActionTypes.FETCH_USER_ERROR, payload: 'Error fetching user profile.' });
     }
   };
 

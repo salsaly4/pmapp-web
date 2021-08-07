@@ -10,11 +10,11 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useActions } from '../../hooks/useActions';
 
 const NavBar: FC = () => {
-  const { isAuth } = useTypedSelector((state) => state.user);
-  const { authUser, loadUser } = useActions();
+  const { user } = useTypedSelector((state) => state);
+  const { authUser, fetchUser } = useActions();
 
   const loginHandler = async () => {
-    await loadUser();
+    await fetchUser();
     authUser();
   };
 
@@ -22,7 +22,7 @@ const NavBar: FC = () => {
     <div>
       <AppBar position="static">
         <Toolbar>
-          {isAuth && (
+          {user.isAuth && (
             <IconButton edge="start" color="inherit" size="large">
               <MenuIcon />
             </IconButton>
@@ -30,7 +30,7 @@ const NavBar: FC = () => {
           <Typography variant="h5" color="primary" sx={{ flexGrow: 1 }}>
             FPMS
           </Typography>
-          {isAuth ? (
+          {user.isAuth ? (
             <div>
               <IconButton size="large" color="inherit">
                 <AccountCircle />
