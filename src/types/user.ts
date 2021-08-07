@@ -45,6 +45,7 @@ export interface IUserState {
   /*
    * Internal properties
    */
+  isAuth: boolean;
   loading: boolean;
   saved: boolean;
   error: boolean;
@@ -73,6 +74,7 @@ export enum UserRoles {
  * User action types
  */
 export enum UserActionTypes {
+  AUTH_USER = 'AUTH_USER',
   FETCH_USER = 'FETCH_USER',
   FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS',
   FETCH_USER_ERROR = 'FETCH_USER_ERROR',
@@ -85,6 +87,12 @@ export enum UserActionTypes {
   SET_NOTIFICATIONS = 'SET_NOTIFICATIONS',
   CONNECT_APP = 'CONNECT_APP',
   DISCONNECT_APP = 'DISCONNECT_APP',
+  LOGOUT_USER = 'LOGOUT_USER',
+}
+
+interface AuthUser {
+  type: UserActionTypes.AUTH_USER;
+  payload: boolean;
 }
 
 interface FetchUser {
@@ -144,7 +152,12 @@ interface DisconnectApp {
   payload: string;
 }
 
+interface LogoutUser {
+  type: UserActionTypes.LOGOUT_USER;
+}
+
 export type UserAction =
+  | AuthUser
   | FetchUser
   | FetchUserSuccess
   | FetchUserError
@@ -156,4 +169,5 @@ export type UserAction =
   | GrantSupportAccess
   | SetNotifications
   | ConnectApp
-  | DisconnectApp;
+  | DisconnectApp
+  | LogoutUser;

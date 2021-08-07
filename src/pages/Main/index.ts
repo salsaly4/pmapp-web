@@ -2,4 +2,6 @@
  * Copyright (c) Alexander Bulanov 2021.
  */
 
-@import "utils/fonts";
+import { Main } from './Main';
+
+export { Main };
