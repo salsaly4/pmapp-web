@@ -2,18 +2,19 @@
  * Copyright (c) Alexander Bulanov 2021.
  */
 
+import { CssBaseline, useMediaQuery } from '@material-ui/core';
+import { createTheme, StyledEngineProvider, ThemeProvider } from '@material-ui/core/styles';
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { CssBaseline, useMediaQuery } from '@material-ui/core';
-import { ThemeProvider, StyledEngineProvider, createTheme } from '@material-ui/core/styles';
-import { ThemeTypography } from './utils/muitheme';
-import { NavBar } from './components/NavBar';
+
+import './App.module.css';
 import { Footer } from './components/Footer';
+import { NavBar } from './components/NavBar';
+import { useActions } from './hooks/useActions';
 import { Home } from './pages/Home';
 import { Main } from './pages/Main';
-import './App.module.css';
-import { useActions } from './hooks/useActions';
 import { UserPreferences } from './pages/UserPreferences';
+import { ThemeTypography } from './utils/muitheme';
 
 function App(): React.ReactElement {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
