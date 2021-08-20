@@ -19,7 +19,7 @@ const Profile: FC = () => {
           <Divider />
         </Grid>
 
-        <Grid item xs={12} direction="column" mt={2}>
+        <Grid item xs={12} mt={2}>
           <Grid item container xs={12} direction="row">
             <Grid item container xs={3} justifyContent="center">
               <Typography variant="h6">Photo</Typography>
