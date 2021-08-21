@@ -6,6 +6,7 @@
  * ALPHA: Boilerplate code
  * Represents external app connection
  */
+
 interface IConnectedApp {
   id: string;
   title: string;
