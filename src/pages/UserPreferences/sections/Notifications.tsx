@@ -9,6 +9,7 @@ import { useTypedSelector } from '../../../hooks/useTypedSelector';
 const Notifications: FC = () => {
   const { user } = useTypedSelector((state) => state);
 
+  // TODO: Fix using state for notifications settings
   return (
     <div>
       <Typography variant="h5">Notifications settings</Typography>
